@@ -1,18 +1,33 @@
 import { useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 function Users() {
 
-    const {username } = useParams();
+    const { id } = useParams();
 
-    useEffect(() => {
-        fetch(`https://www.tiktok.com/${username}`);
-    }, [])
+    const [info, setInfo] = useState({});
+
+    async function getUserInfo() {
+        const {data} = await axios.get(`https://jsonplaceholder.typicode.com/users/${id}`);
+
+        setInfo(data);
+    }
+
+   useEffect(() => {
+        getUserInfo();
+   }, [])
 
 
     return (
         <div>
-            <h1> {username} </h1>
+
+            <Link to='/'>Go Back to h,</Link>
+
+            <h1> {info.id} </h1>
+            <h1> {info.name} </h1>
+            <h1> {info.username} </h1>
         </div>
     );
 }

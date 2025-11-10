@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import UserData from "../components/UserData";
+import { Link } from "react-router-dom";
+import Nav from "../Nav";
 
 function Home() {
 
@@ -18,13 +21,21 @@ function Home() {
 
     return (
         <>
+
+        <Nav />
             {
                 users.map((user) => (
-                    <div key={user.id} style={{border:'1px solid red', color:'green'}} >
-                        <div> {user?.name} </div>
-                        <div> {user?.username} </div>
-                        <div> {user.id} </div>
-                    </div>
+
+                    <Link   key={user.id} 
+                            to={`/users/${user.id}`} 
+                    > 
+                        <UserData
+                            id={user.id}
+                            name={user.name}
+                            username={user.username}
+                        />
+                    </Link>
+                    
                 ))
             }
         </>

@@ -5,7 +5,6 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Posts from './pages/Posts';
 
-import Nav from './Nav';
 import Users from './pages/Users';
 
 
@@ -13,12 +12,11 @@ function App() {
   return (
     <Router>
 
-      <Nav />
 
       <Routes>
 
         <Route path='/' element={<Home />} />
-        <Route path='/users/:username' element={ <Users /> } />
+        <Route path='/users/:id' element={ <Users /> } />
 
       </Routes>
     </Router>
